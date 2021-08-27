@@ -14,6 +14,7 @@ from pathlib import Path
 import cloudinary
 import os
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -94,12 +95,9 @@ WSGI_APPLICATION = 'myHome.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myhome',
-        'USER': 'postgres',
-        'PASSWORD': '138521',
-    }
+    'default': dj_database_url.config(
+        default= config('DATABASE_URL')
+    )
 }
 
 
